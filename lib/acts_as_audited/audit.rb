@@ -74,10 +74,10 @@ class Audit < ActiveRecord::Base
   def user_as_string=(user)
     # reset both either way
     self.user_as_model = self.username = nil
-    user.is_a?(ActiveRecord::Base) ?
-      self.user_as_model = user :
-      self.username = user
+    self.user_as_model = user
+    self.username = user.full_name
   end
+  
   alias_method :user_as_model=, :user=
   alias_method :user=, :user_as_string=
 
